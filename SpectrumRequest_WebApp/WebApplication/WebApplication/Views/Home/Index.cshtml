@@ -1,0 +1,419 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>HomePage</title>
+    <meta name="author" content="Rashid Kadivar"/>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse collapse navbar-collapse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" ng-click="vm.isCollapsed = !vm.isCollapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">CRC</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" uib-collapse="vm.isCollapsed" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown" uib-dropdown>
+                        <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" uib-dropdown-menu>
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown" uib-dropdown>
+                        <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" uib-dropdown-menu>
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div>
+        <div ng-app="Homeapp" ng-controller="HomeController">
+            <button data-toggle="modal" data-target="#request-zoom1" id="newRequestPage" class="btn btn-primary btn-large" style="float: right;">New Request</button>
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search" />
+                </div>
+            </form>
+
+
+            <div class="modal" id="request-zoom1">
+                <div class="modal-dialog">
+                    <div class="modal-container">
+                        <div class="modal-content col-sm-8">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label>Requestor id</label>
+                                    <input type="text" ng-model="request.requestorid" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Request Type</label>
+                                    <select type="text" ng-model="request.requestType" class="form-control" ng-options="x for x in type"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Antenna Height (m)</label>
+                                    <input type="text" ng-model="request.antennaHeight" class="form-control" placeholder="Between 1-5000" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Renewal</label>
+                                    <select type="text" ng-model="request.renewal" class="form-control" ng-options="x for x in renewal"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Frequency (MHz)</label>
+                                    <input type="number" ng-model="request.startFrequency" class="form-control" placeholder="Between 138-970" step="any" name="frequency" min="138" max="970" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label>End Frequency (MHz)</label>
+                                    <input type="text" ng-model="request.endFrequency" class="form-control" placeholder="Between 138-970" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Bandwidth (KHz)</label>
+                                    <select type="text" ng-model="request.bandwidth" class="form-control" ng-options="x for x in bandwidth"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>ACL Level (dB)</label>
+                                    <input type="text" ng-model="request.aclLevel" class="form-control" placeholder="e.g. -60" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Transmitter Power (W)</label>
+                                    <input type="text" ng-model="request.tpower" class="form-control" placeholder="From 1 to 100" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Receiver Sensivity (dBm)</label>
+                                    <input type="text" ng-model="request.receiverSens" class="form-control" placeholder="Between -120 and -40" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Co Channel Receiver (dBm)</label>
+                                    <input type="text" ng-model="request.coChannelReceiver" class="form-control" placeholder="Between -120 and -40" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Adjacent Channel (dBm)</label>
+                                    <input type="text" ng-model="request.adjacentChannel" class="form-control" placeholder="Between -120 and -40" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Latitude (Degree)</label>
+                                    <input type="text" ng-model="request.latitude" class="form-control" placeholder="0.000" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Longitude (Degree)</label>
+                                    <input type="text" ng-model="request.longitude" class="form-control" placeholder="0.000" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Radius (km)</label>
+                                    <input type="text" ng-model="request.radius" class="form-control" placeholder="Between 1-1000" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" ng-model="request.requestDateTime" class="form-control" value="{{request.requestDateTime=currentDate}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Date Time</label>
+                                    <input type="date" ng-model="request.startDateTime" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Duration (Days)</label>
+                                    <input type="text" ng-model="request.duration" class="form-control" placeholder="1-365" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Duty Cycle (%)</label>
+                                    <input type="text" ng-model="request.dutyCycle" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Repeat Count</label>
+                                    <input type="text" ng-model="request.repeatCount" class="form-control" placeholder="Total Lenght < 365 Days" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Repeat Interval (minutes)</label>
+                                    <input type="text" ng-model="request.repeatInterval" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Traffic Model</label>
+                                    <select type="text" ng-model="request.trafficModel" class="form-control" ng-options="x for x in trafficModel"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>QOS Level Required</label>
+                                    <select type="text" ng-model="request.qosLevelRequired" class="form-control" ng-options="x for x in qos"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Radio Flags</label>
+                                    <input type="text" ng-model="request.radioFlags" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" ng-model="request.requestStatus" class="form-control" value="{{request.requestStatus=status}}" disabled />
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-primary" ng-click="savedata()" value="{{btntext}}" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" style="float: left">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="button-group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><input type="checkbox" ng-model="hideRequestType" />&nbsp;Hide Request Type</li>
+                                <li><input type="checkbox" ng-model="hideAntennaHeight" />&nbsp;Hide Antenna Hieght</li>
+                                <li><input type="checkbox" ng-model="hideStartfreq" />&nbsp;Hide Start Frequency</li>
+                                <li><input type="checkbox" ng-model="hideEndfreq" />&nbsp;Hide End Frequency</li>
+                                <li><input type="checkbox" ng-model="hidebandwidth" />&nbsp;Hide Bandwidth</li>
+                                <li><input type="checkbox" ng-model="hideTransmitPower" />&nbsp;Hide Start Frequency</li>
+                                <li><input type="checkbox" ng-model="hideLatitude" />&nbsp;Hide Latitude</li>
+                                <li><input type="checkbox" ng-model="hideLognitude" />&nbsp;hide Longitude</li>
+                                <li><input type="checkbox" ng-model="hideRadius" />&nbsp;hide Radius</li>
+                                <li><input type="checkbox" ng-model="hideStartDatetime" />&nbsp;Hide start date Time</li>
+                                <li><input type="checkbox" ng-model="hideDuration" />&nbsp;Hide Duration</li>
+                                <li><input type="checkbox" ng-model="hideDutyCycle" />&nbsp;Hide Duty Cycle</li>
+                                <li><input type="checkbox" ng-model="hideTrafficmodel" />&nbsp;Hide Traffic Model</li>
+                                <li><input type="checkbox" ng-model="hideStatus" />&nbsp;Hide Status</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped" st-table="displayedCollection" st-safe-src="vm.stores">
+                <thead style="background-color: #2193ba; color: white">
+                    <tr>
+                        <th ng-click="sort ('requestid')">
+                            Request ID
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='requestid'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort ('requestorid')">
+                            Requestor ID
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='requestorid'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort ('requestType')" ng-hide="hideRequestType">
+                            Request Type
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='requestType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort ('antennaHeight')" ng-hide="hideAntennaHeight">
+                            Antenna Hieght (m)
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='antennaHeight'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort ('startFrequency')" ng-hide="hideStartfreq">
+                            Start Frequency (MHz)
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='startFrequency'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort ('endFrequency')" ng-hide="hideEndfreq">
+                            End Frequency (MHz)
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='endFrequency'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort ('bandwidth')" ng-hide="hidebandwidth">
+                            Bandwidth (KHz)
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='bandwidth'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort ('tpower')" ng-hide="hideTransmitPower">
+                            Transmitter Power (W)
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='tpower'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-hide="hideLatitude">Latitude</th>
+                        <th ng-hide="hideLognitude">Longitude</th>
+                        <th ng-click="sort ('radius')" ng-hide="hideRadius">
+                            Radius
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='radius'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-hide="hideStartDatetime">Request Start date</th>
+                        <th ng-click="sort ('duration')" ng-hide="hideDuration">
+                            Duration
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='duration'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-hide="hideDutyCycle">Duty Cycle</th>
+                        <th ng-hide="hideTrafficmodel">Traffic Model</th>
+                        <th ng-click="sort ('requestStatus')" ng-hide="hideStatus">
+                            Request Status
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='requestStatus'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="e in record | itemsPerPage:pageSize | filter:search |orderBy:sortKey:reverse" ng-class="'even'" ng-class-odd="'odd'">
+                        <td>
+                            <a ng-click="toggleModal(e.requestid)" class="btn btn-link" data-target="#request-zoom2" data-toggle="modal">{{e.requestid}}</a>
+                        </td>
+                        <td>{{e.requestorid}}</td>
+                        <td ng-hide="hideRequestType">{{e.requestType}}</td>
+                        <td ng-hide="hideAntennaHeight">{{e.antennaHeight}}</td>
+                        <td ng-hide="hideStartfreq">{{e.startFrequency}}</td>
+                        <td ng-hide="hideEndfreq">{{e.endFrequency}}</td>
+                        <td ng-hide="hidebandwidth">{{e.bandwidth}}</td>
+                        <td ng-hide="hideTransmitPower">{{e.tpower}}</td>
+                        <td ng-hide="hideLatitude">{{e.latitude}}</td>
+                        <td ng-hide="hideLognitude">{{e.longitude}}</td>
+                        <td ng-hide="hideRadius">{{e.radius}}</td>
+                        <td ng-hide="hideStartDatetime">{{e.startDateTime}}</td>
+                        <td ng-hide="hideDuration">{{e.duration}}</td>
+                        <td ng-hide="hideDutyCycle">{{e.dutyCycle}}</td>
+                        <td ng-hide="hideTrafficmodel">{{e.trafficModel}}</td>
+                        <td ng-hide="hideStatus">{{e.requestStatus}}</td>
+                        <td><a class="btn btn-danger" ng-click="deleterecord(e.requestid)" ng-confirm-click="Are you sure?">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <form class="form-inline">
+                <label for="search">Items per page:</label>
+                <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+            </form>
+            <div ng-controller="OtherController" class="other-controller">
+                <div class="text-center">
+                    <dir-pagination-controls max-size="5" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+                </div>
+            </div>
+
+            <div class="modal" id="request-zoom2" data-ng-init="loadrecord(@Convert.ToInt32(Request.QueryString["id"]))">
+                <div class="modal-dialog">
+                    <div class="modal-container">
+                        <div class="modal-content col-sm-8">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label>Requestor id</label>
+                                    <input type="text" ng-model="request.requestorid" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Request Type</label>
+                                    <select type="text" ng-model="request.requestType" class="form-control" ng-options="x for x in type"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Antenna Height (m)</label>
+                                    <input type="text" ng-model="request.antennaHeight" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Renewal</label>
+                                    <select type="text" ng-model="request.renewal" class="form-control" ng-options="x for x in renewal"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Start Frequency (MHZ)</label>
+                                    <input type="text" ng-model="request.startFrequency" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>End Frequency (MHZ)</label>
+                                    <input type="text" ng-model="request.endFrequency" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Bandwidth (KHz)</label>
+                                    <select type="text" ng-model="request.bandwidth" class="form-control" ng-options="x for x in bandwidth"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>ACL Level</label>
+                                    <input type="text" ng-model="request.aclLevel" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Transmitter Power (W)</label>
+                                    <input type="text" ng-model="request.tpower" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Receiver Sensivity (dBm)</label>
+                                    <input type="text" ng-model="request.receiverSens" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Co Channel Receiver (dBm)</label>
+                                    <input type="datetime" ng-model="request.coChannelReceiver" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Adjacent Channel (dBm)</label>
+                                    <input type="text" ng-model="request.adjacentChannel" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Latitude (Degrees)</label>
+                                    <input type="text" ng-model="request.latitude" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Longitude (Degrees)</label>
+                                    <input type="text" ng-model="request.longitude" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Radius (km)</label>
+                                    <input type="text" ng-model="request.radius" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Duration (Days)</label>
+                                    <input type="text" ng-model="request.duration" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Duty Cycle (%)</label>
+                                    <input type="text" ng-model="request.dutyCycle" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Repeat Count</label>
+                                    <input type="text" ng-model="request.repeatCount" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Repeat Interval (minutes)</label>
+                                    <input type="text" ng-model="request.repeatInterval" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Traffic Model</label>
+                                    <select type="text" ng-model="request.trafficModel" class="form-control" ng-options="x for x in trafficModel"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>QOS Level Required</label>
+                                    <select type="text" ng-model="request.qosLevelRequired" class="form-control" ng-options="x for x in qos"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Radio Flags</label>
+                                    <input type="text" ng-model="request.radioFlags" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-primary" ng-click="updatedata()" value="{{btntext}}" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/AngularController/HomeAngularJS.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
+
+</body>
+</html>
